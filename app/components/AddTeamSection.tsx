@@ -22,7 +22,7 @@ export function AddTeamSection() {
                     value={newTeamName}
                     onChange={(e) => setNewTeamName(e.target.value)}
                     placeholder="Enter team name..."
-                    className="flex-1 px-4 py-3 text-xl font-bold border-4 border-black bg-white focus:outline-none focus:bg-yellow-100"
+                    className="flex-1 px-4 py-3 text-xl font-bold text-black border-4 border-black bg-white focus:outline-none focus:bg-yellow-100"
                     onKeyPress={handleKeyPress}
                 />
                 <button

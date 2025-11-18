@@ -14,6 +14,7 @@ interface QuizContextType {
     newTeamName: string;
     editingTeam: number | null;
     editingName: string;
+    isDrawerOpen: boolean;
 
     // Actions
     setNewTeamName: (name: string) => void;
@@ -24,6 +25,8 @@ interface QuizContextType {
     cancelEditing: () => void;
     deleteTeam: (id: number) => void;
     setEditingName: (name: string) => void;
+    toggleDrawer: () => void;
+    setDrawerOpen: (open: boolean) => void;
 }
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
@@ -37,6 +40,7 @@ export function QuizProvider({ children }: QuizProviderProps) {
     const [newTeamName, setNewTeamName] = useState("");
     const [editingTeam, setEditingTeam] = useState<number | null>(null);
     const [editingName, setEditingName] = useState("");
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const addTeam = () => {
         if (newTeamName.trim()) {
@@ -88,12 +92,21 @@ export function QuizProvider({ children }: QuizProviderProps) {
         setTeams(teams.filter((team) => team.id !== id));
     };
 
+    const toggleDrawer = () => {
+        setIsDrawerOpen(!isDrawerOpen);
+    };
+
+    const setDrawerOpen = (open: boolean) => {
+        setIsDrawerOpen(open);
+    };
+
     const value: QuizContextType = {
         // State
         teams,
         newTeamName,
         editingTeam,
         editingName,
+        isDrawerOpen,
 
         // Actions
         setNewTeamName,
@@ -104,6 +117,8 @@ export function QuizProvider({ children }: QuizProviderProps) {
         cancelEditing,
         deleteTeam,
         setEditingName,
+        toggleDrawer,
+        setDrawerOpen,
     };
 
     return (

@@ -37,7 +37,7 @@ export function TeamCard({ team }: TeamCardProps) {
                             type="text"
                             value={editingName}
                             onChange={(e) => setEditingName(e.target.value)}
-                            className="flex-1 px-2 py-1 text-lg font-bold border-2 border-black bg-yellow-100 focus:outline-none"
+                            className="flex-1 px-2 py-1 text-lg font-bold text-black border-2 border-black bg-yellow-100 focus:outline-none"
                             onKeyPress={handleKeyPress}
                             onBlur={handleBlur}
                             autoFocus
@@ -71,10 +71,10 @@ export function TeamCard({ team }: TeamCardProps) {
                         +1
                     </button>
                     <button
-                        onClick={() => updatePoints(team.id, 5)}
+                        onClick={() => updatePoints(team.id, 3)}
                         className="flex-1 px-4 py-3 bg-green-500 border-3 border-black text-lg font-black text-black hover:bg-green-400 active:shadow-[1px_1px_0px_0px_#000] shadow-[4px_4px_0px_0px_#000] transition-all"
                     >
-                        +5
+                        +3
                     </button>
                 </div>
 
@@ -86,10 +86,10 @@ export function TeamCard({ team }: TeamCardProps) {
                         -1
                     </button>
                     <button
-                        onClick={() => updatePoints(team.id, -5)}
+                        onClick={() => updatePoints(team.id, -3)}
                         className="flex-1 px-4 py-3 bg-red-500 border-3 border-black text-lg font-black text-black hover:bg-red-400 active:shadow-[1px_1px_0px_0px_#000] shadow-[4px_4px_0px_0px_#000] transition-all"
                     >
-                        -5
+                        -3
                     </button>
                 </div>
 

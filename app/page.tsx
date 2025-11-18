@@ -1,7 +1,7 @@
 "use client";
 
-import { AddTeamSection } from "./components/AddTeamSection";
-import { TeamsGrid } from "./components/TeamsGrid";
+import { Highscore } from "./components/Highscore";
+import { TeamDrawer } from "./components/TeamDrawer";
 
 export default function Home() {
     return (
@@ -17,12 +17,12 @@ export default function Home() {
                     </p>
                 </div>
 
-                {/* Add Team Section */}
-                <AddTeamSection />
-
-                {/* Teams Grid */}
-                <TeamsGrid />
+                {/* Main Highscore View */}
+                <Highscore />
             </div>
+
+            {/* Team Management Drawer */}
+            <TeamDrawer />
         </div>
     );
 }

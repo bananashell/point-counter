@@ -18,12 +18,17 @@ body {
     font-family: "Courier New", "Monaco", "Menlo", monospace;
 }
 
+/* Configure Sora for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-sora), "Courier New", "Monaco", "Menlo", monospace;
+}
+
 /* Neo-brutalist button hover effects */
 button:active {
     transform: translate(2px, 2px);
-}
-
-/* Ensure high contrast and bold styling */
-* {
-    font-weight: inherit;
 }
