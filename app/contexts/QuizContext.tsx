@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+    createContext,
+    useContext,
+    useState,
+    useEffect,
+    ReactNode,
+} from "react";
 
 export interface Team {
     id: number;
@@ -27,7 +33,10 @@ interface QuizContextType {
     setEditingName: (name: string) => void;
     toggleDrawer: () => void;
     setDrawerOpen: (open: boolean) => void;
+    clearAllTeams: () => void;
 }
+
+const STORAGE_KEY = "quiz-tracker-teams";
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
 
@@ -35,12 +44,38 @@ interface QuizProviderProps {
     children: ReactNode;
 }
 
+// Helper functions for localStorage
+const loadTeamsFromStorage = (): Team[] => {
+    if (typeof window === "undefined") return [];
+    try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? JSON.parse(stored) : [];
+    } catch (error) {
+        console.error("Error loading teams from localStorage:", error);
+        return [];
+    }
+};
+
+const saveTeamsToStorage = (teams: Team[]) => {
+    if (typeof window === "undefined") return;
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(teams));
+    } catch (error) {
+        console.error("Error saving teams to localStorage:", error);
+    }
+};
+
 export function QuizProvider({ children }: QuizProviderProps) {
-    const [teams, setTeams] = useState<Team[]>([]);
+    const [teams, setTeams] = useState<Team[]>(() => loadTeamsFromStorage());
     const [newTeamName, setNewTeamName] = useState("");
     const [editingTeam, setEditingTeam] = useState<number | null>(null);
     const [editingName, setEditingName] = useState("");
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+    // Save teams to localStorage whenever teams change
+    useEffect(() => {
+        saveTeamsToStorage(teams);
+    }, [teams]);
 
     const addTeam = () => {
         if (newTeamName.trim()) {
@@ -100,6 +135,10 @@ export function QuizProvider({ children }: QuizProviderProps) {
         setIsDrawerOpen(open);
     };
 
+    const clearAllTeams = () => {
+        setTeams([]);
+    };
+
     const value: QuizContextType = {
         // State
         teams,
@@ -119,6 +158,7 @@ export function QuizProvider({ children }: QuizProviderProps) {
         setEditingName,
         toggleDrawer,
         setDrawerOpen,
+        clearAllTeams,
     };
 
     return (
