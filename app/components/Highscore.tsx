@@ -64,16 +64,16 @@ export function Highscore() {
                             className={`flex items-center justify-between p-4 ${positionColor} border-3 border-black shadow-[4px_4px_0px_0px_#000] transform hover:rotate-1 transition-transform`}
                         >
                             <div className="flex items-center gap-4">
-                                <div className="text-3xl font-black text-black bg-white px-3 py-1 border-2 border-black">
-                                    {positionIcon || `#${position}`}
-                                </div>
-                                <div className="text-2xl font-black text-black">
+                                <h6 className="text-3xl font-black text-black bg-white px-3 py-1 border-2 border-black">
+                                    {positionIcon || `${position}`}
+                                </h6>
+                                <h6 className="text-2xl font-black text-black">
                                     {team.name}
-                                </div>
+                                </h6>
                             </div>
-                            <div className="text-4xl font-black text-black bg-white px-4 py-2 border-3 border-black transform rotate-3">
+                            <h6 className="text-4xl font-black text-black bg-white px-4 py-2 border-3 border-black transform rotate-3">
                                 {team.points}
-                            </div>
+                            </h6>
                         </div>
                     );
                 })}
